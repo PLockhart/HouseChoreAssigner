@@ -34,7 +34,7 @@ class Job {
     }
 }
 
-$OP_MODE = isset($_GET["opMode"]) ? $_GET["opMode"] : NULL;
+$OP_MODE = isset($argv) ? $argv[1] : NULL;
 
 $flatmatesFile = fopen("Flatmates.txt", "r");
 $flatmates = array();
@@ -65,6 +65,7 @@ if ($jobsFile)
     while (($line = fgetcsv($jobsFile)) !== FALSE) {
         
         $dayIndex = $dowMap[$line[0]];
+
         if (!$dayIndex)
         {
             throw new Exception("Could not work out what day of the week $line[1] is");
@@ -85,6 +86,16 @@ if ($jobsFile)
 else
 {
     throw new Exception("Could not load Jobs file");
+}
+
+if (!count($jobs))
+{
+    echo "No jobs to do today";
+}
+
+if (!count($flatmates))
+{
+    throw new Exception("No flatmates could be loaded from Flatmates.txt");
 }
 
 if (count($jobs) && count($flatmates))
