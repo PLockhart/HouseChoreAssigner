@@ -60,9 +60,6 @@ $todaysDate = new \DateTime();
 $weekNumber = $todaysDate->format('W');
 $dayNumber = $todaysDate->format('N');
 
-//TODO: remove
-$dayNumber = 4;
-
 if ($jobsFile)
 {
     while (($line = fgetcsv($jobsFile)) !== FALSE) {
@@ -133,7 +130,7 @@ if (count($jobs) && count($flatmates))
             
             if ($loopedJob->SpecialWeekOffset != -1 && $weekNumber % 2 ==$loopedJob->SpecialWeekOffset)
             {
-                $message .= " - " . $loopedJob->SpecialWeekText;
+                $message .= ", " . $loopedJob->SpecialWeekText;
             }
             
             if ($OP_MODE == "SMS")
