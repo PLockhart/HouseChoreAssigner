@@ -102,7 +102,7 @@ if ($OP_MODE != "SMS")
     echo "<h1>Today</h2>";
 }
 
-if ($numJobsToday == 0)
+if ($numJobsToday == 0 && $OP_MODE != "SMS")
 {
     echo "No jobs to do today";
 }
